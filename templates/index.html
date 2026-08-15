@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OncoVision AI - Breast Cancer Diagnostic & Risk Analytics</title>
+  <meta name="description" content="AI-powered breast cancer risk prediction platform with glassmorphic interactive diagnostic lab, feature visualization, and custom model Flask integration.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js for Visual Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Background Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="nav-brand">
+      <div class="brand-icon">
+        <!-- Breast Cancer Ribbon SVG Icon -->
+        <svg viewBox="0 0 24 24">
+          <path d="M12,2C10.5,2 9,3 8.5,4.5C7.5,7.5 9,10.5 10.5,13.5C11.2,14.9 12,16.5 12,18C12,19.7 10.7,21 9,21C7.8,21 6.8,20.3 6.3,19.3C5.8,18.3 6,17.2 6.5,16.2L4.7,15.2C3.9,16.7 3.6,18.4 4.4,20.1C5.4,22.1 7.6,23 9.7,22.9C12.3,22.7 14,20.6 14,18C14,15.9 12.9,13.9 12.1,12.3C11,10 9.8,7.8 10.4,5.5C10.7,4.5 11.5,4 12,4C12.5,4 13.3,4.5 13.6,5.5C14.2,7.8 13,10 11.9,12.3L13.9,13.3C15,11 16.5,7.5 15.5,4.5C15,3 13.5,2 12,2Z"/>
+        </svg>
+      </div>
+      <span>OncoVision<span style="color: var(--primary-pink-light);">.ai</span></span>
+      <span class="brand-badge">Flask Engine v1.0</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#lab" class="nav-link active">Diagnostic Lab</a></li>
+      <li><a href="#analytics" class="nav-link">Analytics</a></li>
+      <li><a href="#awareness" class="nav-link">Breast Health</a></li>
+      <li><a href="#lab" class="btn-pink-gradient">Run Analysis &rarr;</a></li>
+    </ul>
+  </nav>
+
+  <!-- Animated Floating Particles & Glowing Ribbons -->
+  <div class="floating-ribbon ribbon-1">
+    <svg viewBox="0 0 24 24"><path d="M12,2C10.5,2 9,3 8.5,4.5C7.5,7.5 9,10.5 10.5,13.5C11.2,14.9 12,16.5 12,18C12,19.7 10.7,21 9,21C7.8,21 6.8,20.3 6.3,19.3C5.8,18.3 6,17.2 6.5,16.2L4.7,15.2C3.9,16.7 3.6,18.4 4.4,20.1C5.4,22.1 7.6,23 9.7,22.9C12.3,22.7 14,20.6 14,18C14,15.9 12.9,13.9 12.1,12.3C11,10 9.8,7.8 10.4,5.5C10.7,4.5 11.5,4 12,4C12.5,4 13.3,4.5 13.6,5.5C14.2,7.8 13,10 11.9,12.3L13.9,13.3C15,11 16.5,7.5 15.5,4.5C15,3 13.5,2 12,2Z"/></svg>
+  </div>
+  <div class="floating-ribbon ribbon-2">
+    <svg viewBox="0 0 24 24"><path d="M12,2C10.5,2 9,3 8.5,4.5C7.5,7.5 9,10.5 10.5,13.5C11.2,14.9 12,16.5 12,18C12,19.7 10.7,21 9,21C7.8,21 6.8,20.3 6.3,19.3C5.8,18.3 6,17.2 6.5,16.2L4.7,15.2C3.9,16.7 3.6,18.4 4.4,20.1C5.4,22.1 7.6,23 9.7,22.9C12.3,22.7 14,20.6 14,18C14,15.9 12.9,13.9 12.1,12.3C11,10 9.8,7.8 10.4,5.5C10.7,4.5 11.5,4 12,4C12.5,4 13.3,4.5 13.6,5.5C14.2,7.8 13,10 11.9,12.3L13.9,13.3C15,11 16.5,7.5 15.5,4.5C15,3 13.5,2 12,2Z"/></svg>
+  </div>
+
+  <!-- Hero Header -->
+  <header class="hero container fade-in">
+    <div class="hero-pill">
+      <span class="pulse-dot"></span> Medical Grade Machine Learning Architecture
+    </div>
+    <h1 class="hero-title">
+      Precision Breast Cancer <br>
+      <span class="text-gradient">Risk Prediction Platform</span>
+    </h1>
+    <p class="hero-subtitle">
+      Powered by high-dimensional nuclear cell analysis. Input cytological measurements or test with real clinical dataset presets below to generate instant probability assessments.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="metrics-row">
+      <div class="glass-card metric-card">
+        <div class="metric-icon">🎯</div>
+        <div>
+          <div class="metric-value" id="val-accuracy">96.5%</div>
+          <div class="metric-label">Validation Accuracy</div>
+        </div>
+      </div>
+      <div class="glass-card metric-card">
+        <div class="metric-icon">📈</div>
+        <div>
+          <div class="metric-value" id="val-auc">98.9%</div>
+          <div class="metric-label">ROC-AUC Score</div>
+        </div>
+      </div>
+      <div class="glass-card metric-card">
+        <div class="metric-icon">⚡</div>
+        <div>
+          <div class="metric-value">&lt; 15ms</div>
+          <div class="metric-label">Flask API Latency</div>
+        </div>
+      </div>
+      <div class="glass-card metric-card">
+        <div class="metric-icon">🔬</div>
+        <div>
+          <div class="metric-value">10 Features</div>
+          <div class="metric-label">Cytological Indicators</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Diagnostic Workspace -->
+  <main class="container" id="lab">
+    <div class="workspace-grid fade-in">
+      
+      <!-- Feature Input Panel -->
+      <div class="glass-card">
+        <div class="form-header">
+          <div class="form-title">
+            <span>🧬</span> Cell Nucleus Features
+          </div>
+          <div class="presets-container">
+            <button class="preset-chip" onclick="loadPreset('malignant')">⚠️ Load Malignant Preset</button>
+            <button class="preset-chip" onclick="loadPreset('benign')">✅ Load Benign Preset</button>
+            <button class="preset-chip" onclick="loadPreset('baseline')">🔄 Reset Baseline</button>
+          </div>
+        </div>
+
+        <form id="prediction-form" onsubmit="event.preventDefault(); runPrediction();">
+          <div class="features-grid" id="features-container">
+            <!-- Dynamic 10 feature input fields injected by JS -->
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="btn-pink-gradient" id="predict-btn">
+              <span>Execute Diagnostic Analysis</span> &rarr;
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Results Card Panel -->
+      <div class="glass-card" id="results-panel">
+        <div class="result-card-inner">
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem;">Prediction Output</h3>
+
+          <!-- Gauge Indicator -->
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 180 180">
+              <circle class="gauge-bg" cx="90" cy="90" r="75"></circle>
+              <circle class="gauge-fill" id="gauge-arc" cx="90" cy="90" r="75"></circle>
+            </svg>
+            <div class="gauge-center-content">
+              <div class="gauge-score" id="result-probability">--%</div>
+              <div class="gauge-subtext">Malignancy Risk</div>
+            </div>
+          </div>
+
+          <!-- Diagnosis Badge -->
+          <div class="result-badge" id="result-badge" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">
+            Awaiting Feature Inputs
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--text-muted);" id="confidence-tag">
+            Adjust cell measurements on the left and click execute.
+          </div>
+
+          <!-- Anomalous Feature Elevation Box -->
+          <div class="anomaly-box" id="anomaly-box" style="display: none;">
+            <div class="anomaly-title">
+              <span>🚨</span> Significant Deviations
+            </div>
+            <div id="anomaly-list">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Analytics & Charts Section -->
+  <section class="container" id="analytics" style="padding-top: 2rem;">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Diagnostic Visual Analytics</h2>
+      <p style="color: var(--text-muted);">Compare patient profile against clinical population distributions & feature weights.</p>
+    </div>
+
+    <div class="analytics-grid">
+      <!-- Radar Chart Card -->
+      <div class="glass-card chart-card">
+        <div class="chart-title">
+          <span>📊 Patient vs Population Baselines</span>
+          <span style="font-size: 0.8rem; color: var(--primary-pink-light);">Radar Projection</span>
+        </div>
+        <div class="chart-canvas-wrapper">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Feature Importance Bar Chart -->
+      <div class="glass-card chart-card">
+        <div class="chart-title">
+          <span>⚖️ Model Feature Importance</span>
+          <span style="font-size: 0.8rem; color: var(--purple-glow);">Classifier Weights</span>
+        </div>
+        <div class="chart-canvas-wrapper">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Breast Health & Awareness Section -->
+  <section class="container" id="awareness" style="margin-bottom: 4rem;">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Breast Cancer Awareness & Early Detection</h2>
+      <p style="color: var(--text-muted);">Early detection saves lives. Understand key screening practices and clinical indicators.</p>
+    </div>
+
+    <div class="awareness-grid">
+      <div class="glass-card guide-card">
+        <div class="guide-number">1</div>
+        <h4 class="guide-heading">Regular Self-Examinations</h4>
+        <p class="guide-text">
+          Perform monthly breast self-exams to become familiar with natural tissue texture and detect unexpected lumps, skin changes, or tenderness early.
+        </p>
+      </div>
+
+      <div class="glass-card guide-card">
+        <div class="guide-number">2</div>
+        <h4 class="guide-heading">Clinical Mammography</h4>
+        <p class="guide-text">
+          Annual or biennial mammograms are recommended for women starting between ages 40 to 50, providing high-resolution imaging before physical symptoms appear.
+        </p>
+      </div>
+
+      <div class="glass-card guide-card">
+        <div class="guide-number">3</div>
+        <h4 class="guide-heading">Fine Needle Aspiration (FNA)</h4>
+        <p class="guide-text">
+          FNA biopsies extract cellular samples from suspicious masses. Cytological features like cell radius, texture, and concavity form the input vector analyzed by our model.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <div class="brand-icon" style="width: 28px; height: 28px;">
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill:#FFF;">
+            <path d="M12,2C10.5,2 9,3 8.5,4.5C7.5,7.5 9,10.5 10.5,13.5C11.2,14.9 12,16.5 12,18C12,19.7 10.7,21 9,21C7.8,21 6.8,20.3 6.3,19.3C5.8,18.3 6,17.2 6.5,16.2L4.7,15.2C3.9,16.7 3.6,18.4 4.4,20.1C5.4,22.1 7.6,23 9.7,22.9C12.3,22.7 14,20.6 14,18C14,15.9 12.9,13.9 12.1,12.3C11,10 9.8,7.8 10.4,5.5C10.7,4.5 11.5,4 12,4C12.5,4 13.3,4.5 13.6,5.5C14.2,7.8 13,10 11.9,12.3L13.9,13.3C15,11 16.5,7.5 15.5,4.5C15,3 13.5,2 12,2Z"/>
+          </svg>
+        </div>
+        OncoVision AI Diagnostic Engine
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.85rem;">Designed with Flask, Python & Scikit-Learn.</p>
+      
+      <div class="disclaimer-pill">
+        <strong>⚠️ Clinical Disclaimer:</strong> OncoVision AI is an educational demonstration tool developed to showcase machine learning integration with web technology. It does NOT provide formal medical diagnosis or replace professional clinical evaluation by qualified healthcare providers.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
