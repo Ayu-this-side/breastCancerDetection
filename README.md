@@ -1,99 +1,102 @@
-# 🩺 OncoVision AI - Breast Cancer Diagnostic & Prediction Platform
+# 🩺 OncoVision AI — Breast Cancer Diagnostic & Prediction Platform
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.2%2B-green.svg)](https://flask.palletsprojects.com/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.0%2B-orange.svg)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-purple.svg)](#license)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.0-orange.svg)](https://scikit-learn.org/)
 
-**OncoVision AI** is a state-of-the-art, glassmorphic medical web application built with **Flask**, **Python**, **Scikit-Learn**, and **Chart.js**. It enables real-time breast cancer malignancy risk prediction using cytological nuclear cell measurements with interactive sliders, clinical presets, and population radar analytics.
+**OncoVision AI** is a glassmorphic medical web application built with **Flask**, **Python**, **Scikit-Learn**, and **Chart.js**. It predicts breast cancer malignancy risk in real time from cytological nuclear cell measurements, using interactive sliders, clinical presets, and population-level radar analytics.
 
----
-
-## ✨ Features & Highlights
-
-- 🎨 **Medical Glassmorphic Aesthetics**: Sleek dark slate theme (`#090C15`) with vibrant magenta-pink glow accents (`#FF2E93`), backdrop blur cards (`backdrop-filter: blur(18px)`), and floating ribbon micro-animations.
-- 🔬 **Interactive Diagnostic Laboratory**: 10 adjustable cell nucleus feature inputs (Radius, Texture, Perimeter, Area, Smoothness, Compactness, Concavity, Concave Points, Symmetry, Fractal Dimension).
-- ⚡ **One-Click Clinical Presets**:
-  - `⚠️ Malignant Case`: Pre-loads actual clinical malignant dataset measurements.
-  - `✅ Benign Case`: Pre-loads actual clinical benign dataset measurements.
-  - `🔄 Baseline`: Resets inputs to mean dataset baselines.
-- 📊 **Diagnostic Visual Analytics**:
-  - **Radar Projection**: Overlays patient sample values against population benign and malignant baselines.
-  - **Feature Importance Chart**: Displays relative feature weights from the classifier.
-- 📦 **Seamless Model Backend**: Auto-trains a high-accuracy baseline classifier if `model.pkl` is missing on initial startup so the app works out of the box!
+🔗 **Live Demo:** [https://breastcancerdetection-ausd.onrender.com/](https://breastcancerdetection-ausd.onrender.com/)
 
 ---
 
-## 📁 System Architecture & Directory Structure
+## ✨ Features
 
-```text
-breast-cancer-flask-app/
-├── .gitignore              # Ignores venv, cache, and IDE configs
-├── README.md               # GitHub repository documentation
-├── app.py                  # Flask web server & REST API endpoints
-├── requirements.txt        # Python package dependencies
-├── model/                  # Trained machine learning model weights
-│   ├── model.pkl           # Saved model classifier object
-│   ├── scaler.pkl          # Feature scaling transformer
-│   └── lr.pkl              # Logistic Regression baseline
+- 🎨 **Medical Glassmorphic UI** — dark slate theme with magenta-pink glow accents, blurred glass cards, and subtle animations.
+- 🔬 **Interactive Diagnostic Panel** — 10 adjustable cell nucleus features: Radius, Texture, Perimeter, Area, Smoothness, Compactness, Concavity, Concave Points, Symmetry, and Fractal Dimension.
+- ⚡ **One-Click Clinical Presets**
+  - `⚠️ Malignant Case` — loads sample malignant measurements
+  - `✅ Benign Case` — loads sample benign measurements
+  - `🔄 Baseline` — resets inputs to dataset mean values
+- 📊 **Diagnostic Analytics**
+  - Radar chart comparing patient input against benign/malignant population baselines
+  - Feature importance chart showing classifier weights
+- 📦 **Zero-Setup Model Backend** — automatically trains a baseline classifier if `model.pkl` isn't found, so the app runs out of the box.
+
+---
+
+## 📁 Project Structure
+
+```
+breastCancerDetection/
+├── app.py                  # Flask server & prediction API endpoints
+├── requirements.txt        # Python dependencies
+├── model/                  # Trained model artifacts
+│   ├── model.pkl           # Saved classifier
+│   ├── scaler.pkl          # Feature scaler
+│   └── lr.pkl              # Logistic Regression model
+├── notebook/                # Model training & experimentation notebooks
+├── setup guide/             # Setup instructions / documentation
 ├── static/
-│   ├── css/
-│   │   └── style.css       # Glassmorphic dark styling & keyframe animations
-│   └── js/
-│       └── main.js         # Async API fetch, preset handlers & Chart.js radar charts
+│   ├── css/                 # Glassmorphic styling
+│   └── js/                  # Chart.js logic, API calls, preset handlers
 └── templates/
-    └── index.html          # HTML5 single-page web app interface
+    └── index.html           # Web app front end
 ```
 
 ---
 
-## 🚀 Quickstart Guide
+## 🚀 Getting Started
 
-### 1. Clone the Repository
+### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/breast-cancer-flask-app.git
-cd breast-cancer-flask-app
+git clone https://github.com/Ayu-this-side/breastCancerDetection.git
+cd breastCancerDetection
 ```
 
-### 2. Set Up Virtual Environment (Optional but Recommended)
+### 2. (Optional) Create a virtual environment
 ```bash
 python -m venv venv
-# On Windows:
+# Windows
 venv\Scripts\activate
-# On macOS/Linux:
+# macOS/Linux
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Flask Server
+### 4. Run the app
 ```bash
 python app.py
 ```
 
-### 5. Open Web Browser
-Navigate to: **`http://127.0.0.1:5000`**
+### 5. Open in your browser
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 🧠 Model
+
+The prediction engine uses **Logistic Regression** trained on the Breast Cancer Wisconsin (Diagnostic) dataset, with features scaled before inference. If no pre-trained model is found in `model/`, the app trains one automatically on startup.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Python 3.x, Flask, Scikit-Learn, NumPy, Pandas, Joblib
-- **Frontend**: HTML5, Vanilla CSS3 (Glassmorphism, CSS Variables, Keyframes), JavaScript (ES6+)
-- **Data Visualization**: Chart.js 4.x
-- **Typography**: Google Fonts (*Plus Jakarta Sans* & *Outfit*)
+| Layer | Tools |
+|---|---|
+| Backend | Python, Flask, Scikit-Learn, NumPy, Pandas, Joblib |
+| Frontend | HTML5, CSS3 (glassmorphism, custom properties), JavaScript (ES6+) |
+| Visualization | Chart.js |
+| Fonts | Plus Jakarta Sans, Outfit (Google Fonts) |
 
 ---
 
-## ⚠️ Clinical Disclaimer
+## ⚠️ Disclaimer
 
-> **IMPORTANT**: OncoVision AI is an educational demonstration project developed to showcase machine learning integration with web technology. It does NOT provide formal medical diagnosis or replace professional clinical evaluation by qualified healthcare providers.
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+> OncoVision AI is an **educational project** demonstrating machine learning integration with web technology. It is **not** a certified diagnostic tool and should never replace professional medical evaluation.
